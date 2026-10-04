@@ -1,32 +1,33 @@
-﻿/**
- * cCc Legends Site Configuration
+/**
+ * cCc Masters Of Battle Site Configuration
  */
 
 const SITE_CONFIG = {
   // Clan Identity
-  clanName: 'cCc Legends',
-  clanAbbr: 'leg',
+  clanName: 'cCc Masters Of Battle',
+  clanAbbr: 'mob',
 
-  // Branding (customize later)
-  primaryColor: '#26c2baff',
-  secondaryColor: '#232526',
+  // Branding: the League One look (purple / indigo, League One icons)
+  primaryColor: '#6c47d9',
+  secondaryColor: '#1e1b4b',
   favicon: 'logo.png',
 
   // Authentication
-  // TODO: Replace with your own Google OAuth Client ID (create a new one, or add this site's URL as an authorized origin on the existing client)
+  // Same Google sign-in client as the other cCc sites: add this site's address as an
+  // authorized JavaScript origin on it (Google Cloud console → Credentials).
   googleClientId: '47674606892-0m90hd0cd01kijo69ssuqtn1j3igp32i.apps.googleusercontent.com',
 
   // Members hidden from progress stats when not logged in
   maskedMembers: [
-    'Legendary CQ'
+    // e.g. the clan's own city account
   ],
 
   // Navigation Pages
   pages: [
-    { name: 'Dashboard', file: 'dashboard.html', icon: '📊' },
-    { name: 'Events', file: 'events.html', icon: '⚔️' },
-    { name: 'Members', file: 'members.html', icon: '👥' },
+    { name: 'Dashboard', file: 'dashboard.html', icon: 'chest.png' },
+    { name: 'Events', file: 'events.html', icon: 'events.png' },
+    { name: 'Members', file: 'members.html', icon: 'members.png' },
     { name: 'Warnings', file: 'warnings.html', icon: 'warning.png' },
-    { name: 'Calendar', file: 'calendar.html', icon: '📅' }
+    { name: 'Calendar', file: 'calendar.html', icon: 'calendar.png' }
   ]
 };

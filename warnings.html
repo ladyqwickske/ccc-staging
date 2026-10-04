@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>cCc Legends - Warnings</title>
+  <title>cCc Masters Of Battle - Warnings</title>
   <link rel="icon" type="image/png" href="logo.png">
   <script src="perf-debug.js"></script>
   <script src="config.js"></script>
@@ -13,24 +13,24 @@
   <script src="portal-auth.js"></script>
   <style>
     :root {
-      --primary: #1fc1e6;
-      --primary-soft: #55d9f3;
-      --primary-strong: #0ea5c6;
-      --primary-hover: #076b88;
+      --primary: #6c47d9;
+      --primary-soft: #a78bfa;
+      --primary-strong: #4f46e5;
+      --primary-hover: #3730a3;
       --accent: #ffd24d;
-      --accent-light: #fff49a;
+      --accent-light: #efe7ff;
       --accent-strong: #e6a418;
       --accent-deep: #c57a00;
-      --bg-dark: #0b3d59;
+      --bg-dark: #1e1b4b;
       --bg-card: rgba(255, 255, 255, 0.95);
-      --bg-card-soft: #dff6ff;
-      --bg-page: #dff6ff;
+      --bg-card-soft: #ece9f8;
+      --bg-page: #e4e2f0;
       --bg-page-alt: #ffffff;
-      --text: #0b3d59;
-      --text-muted: #076b88;
-      --success: #0ea5c6;
+      --text: #1e1b4b;
+      --text-muted: #3730a3;
+      --success: #4f46e5;
       --danger: #8a5b00;
-      --border: #55d9f3;
+      --border: #a78bfa;
       --warn-bg: linear-gradient(180deg, #ffffff 0%, var(--bg-card-soft) 100%);
       --warn-border: #ffd24d;
     }
@@ -80,7 +80,7 @@
     /* Container */
     .container {
       max-width: 900px; margin: 0 auto; background: var(--bg-card);
-      border-radius: 16px; box-shadow: 0 12px 30px rgba(11,61,89,0.12); padding: 20px 16px; border: 1px solid rgba(85,217,243,0.45);
+      border-radius: 16px; box-shadow: 0 12px 30px rgba(30,27,75,0.12); padding: 20px 16px; border: 1px solid rgba(167,139,250,0.45);
     }
     h1 { color: var(--primary); text-align: center; margin-bottom: 4px; font-size: 1.6em; }
     .site-logo { width: 56px; height: 56px; display: block; margin: 0 auto 6px auto; }
@@ -95,7 +95,7 @@
       font-size: 0.92em; font-weight: 600; color: var(--text-muted);
       border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s;
     }
-    .content-tabs button:hover { color: var(--primary); background: rgba(85,217,243,0.14); }
+    .content-tabs button:hover { color: var(--primary); background: rgba(167,139,250,0.14); }
     .content-tabs button.active { color: var(--primary); border-bottom-color: var(--primary); }
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
@@ -125,7 +125,7 @@
     }
     .form-grid textarea { resize: vertical; min-height: 60px; font-family: inherit; }
     .form-grid select:focus, .form-grid input:focus, .form-grid textarea:focus {
-      outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(31,193,230,0.18);
+      outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(108,71,217,0.18);
     }
     .btn {
       background: var(--primary); color: #fff; border: none; border-radius: 8px;
@@ -151,7 +151,7 @@
     .summary-table th .sort-arrow { font-size: 0.7em; margin-left: 4px; opacity: 0.4; }
     .summary-table th.sorted .sort-arrow { opacity: 1; }
     .summary-table td { padding: 8px; border-bottom: 1px solid #eee; }
-    .summary-table tr:hover { background: rgba(85,217,243,0.14); }
+    .summary-table tr:hover { background: rgba(167,139,250,0.14); }
     .summary-table .warn-badge {
       display: inline-block; padding: 2px 10px; border-radius: 10px;
       font-size: 0.8em; font-weight: 700; color: #fff; min-width: 28px; text-align: center;
@@ -273,7 +273,7 @@
 </div>
 
 <div class="container" id="mainContent" style="display:none">
-  <img src="warning.png" alt="cCc Legends" class="site-logo">
+  <img src="warning.png" alt="cCc Masters Of Battle" class="site-logo">
   <h1>Member Warnings</h1>
   <p class="subtitle">Track and manage performance warnings</p>
 
@@ -365,7 +365,7 @@
 
   // ===== AUTH =====
   function checkLoginState() {
-    const stored = localStorage.getItem('leg_auth');
+    const stored = localStorage.getItem('mob_auth');
     if (stored) {
       try {
         const auth = JSON.parse(stored);
@@ -410,7 +410,7 @@
         if (authResult.success && authResult.allowed) {
           isLoggedIn = true;
           currentUser = { email: data.email, allowed: true };
-          localStorage.setItem('leg_auth', JSON.stringify(currentUser));
+          localStorage.setItem('mob_auth', JSON.stringify(currentUser));
           updateLoginUI();
           showToast('Logged in as ' + data.email, 'success');
         } else { showToast('Access denied', 'error'); }
@@ -420,7 +420,7 @@
 
   function handleLogout() {
     isLoggedIn = false; currentUser = null;
-    localStorage.removeItem('leg_auth');
+    localStorage.removeItem('mob_auth');
     window.location.href = 'dashboard.html';
   }
 

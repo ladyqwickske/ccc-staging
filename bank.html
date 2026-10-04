@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>cCc Legends - Bank</title>
+  <title>cCc Masters Of Battle - Bank</title>
   <link rel="icon" type="image/png" href="logo.png">
   <script src="perf-debug.js"></script>
   <script src="config.js"></script>
@@ -13,22 +13,22 @@
   <script src="portal-auth.js"></script>
   <style>
     :root {
-      --primary: #1fc1e6;
-      --primary-soft: #55d9f3;
-      --primary-hover: #076b88;
+      --primary: #6c47d9;
+      --primary-soft: #a78bfa;
+      --primary-hover: #3730a3;
       --accent: #ffd24d;
-      --accent-light: #fff49a;
+      --accent-light: #efe7ff;
       --accent-deep: #c57a00;
       --bg-card: rgba(255, 255, 255, 0.95);
-      --bg-card-soft: #dff6ff;
-      --bg-page: #dff6ff;
+      --bg-card-soft: #ece9f8;
+      --bg-page: #e4e2f0;
       --bg-page-alt: #ffffff;
-      --text: #0b3d59;
-      --text-muted: #076b88;
-      --success: #0ea5c6;
+      --text: #1e1b4b;
+      --text-muted: #3730a3;
+      --success: #4f46e5;
       --danger: #8a5b00;
       --debt: #c62828;
-      --border: #55d9f3;
+      --border: #a78bfa;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -70,8 +70,8 @@
     .hamburger span { display: block; width: 22px; height: 2px; background: var(--primary); border-radius: 2px; }
     .container {
       max-width: 1200px; margin: 0 auto; background: var(--bg-card);
-      border-radius: 16px; box-shadow: 0 12px 30px rgba(11,61,89,0.12);
-      padding: 24px 16px; border: 1px solid rgba(85,217,243,0.45);
+      border-radius: 16px; box-shadow: 0 12px 30px rgba(30,27,75,0.12);
+      padding: 24px 16px; border: 1px solid rgba(167,139,250,0.45);
     }
     h1 { color: var(--primary); text-align: center; margin-bottom: 4px; font-size: 1.8em; }
     h2 { color: var(--primary); font-size: 1.05em; margin-bottom: 10px; }
@@ -88,7 +88,7 @@
       width: 100%; padding: 9px 11px; background: #ffffff; border: 1px solid var(--border);
       border-radius: 8px; color: var(--text); font-size: 0.9em;
     }
-    input:focus, select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(31,193,230,0.18); }
+    input:focus, select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(108,71,217,0.18); }
     small { display: block; color: var(--text-muted); font-size: 0.72em; margin-top: 3px; }
     .btn {
       background: var(--primary); color: #fff; border: none; border-radius: 8px;
@@ -119,9 +119,9 @@
     .sort-header { padding: 0; border: 0; background: transparent; color: inherit; font: inherit; text-transform: inherit; letter-spacing: inherit; cursor: pointer; text-align: left; }
     .sort-header:hover { color: var(--primary); }
     td { padding: 8px; border-bottom: 1px solid #e8eef2; }
-    tr:hover { background: rgba(85,217,243,0.14); }
+    tr:hover { background: rgba(167,139,250,0.14); }
     .status-badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 0.75em; font-weight: 800; }
-    .status-active { background: #e0f7fa; color: #006978; }
+    .status-active { background: #ede9fe; color: #006978; }
     .status-former { background: #fff4cc; color: #8a5b00; }
     .status-external { background: #eceff1; color: #455a64; }
     .positive { color: var(--success); font-weight: 700; }
@@ -181,7 +181,7 @@
 </div>
 
 <div class="container" id="mainContent" style="display:none">
-  <img src="bank.png" alt="cCc Legends" class="site-logo">
+  <img src="bank.png" alt="cCc Masters Of Battle" class="site-logo">
   <h1>Bank</h1>
   <p class="subtitle">Member balances and transaction ledger</p>
 
@@ -323,7 +323,7 @@
   });
 
   function checkLoginState() {
-    const stored = localStorage.getItem('leg_auth');
+    const stored = localStorage.getItem('mob_auth');
     if (stored) {
       try {
         currentUser = JSON.parse(stored);
@@ -365,7 +365,7 @@
         if (allowed) {
           currentUser = { email: data.email };
           isLoggedIn = true;
-          localStorage.setItem('leg_auth', JSON.stringify(currentUser));
+          localStorage.setItem('mob_auth', JSON.stringify(currentUser));
           updateLoginUI();
           refreshBankData(true);
           showToast('Logged in as ' + data.email, 'success');
@@ -376,7 +376,7 @@
 
   function handleLogout() {
     isLoggedIn = false; currentUser = null;
-    localStorage.removeItem('leg_auth');
+    localStorage.removeItem('mob_auth');
     updateLoginUI();
   }
 

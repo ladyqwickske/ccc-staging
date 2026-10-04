@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>cCc Legends - Dashboard</title>
+  <title>cCc Masters Of Battle - Dashboard</title>
   <link rel="icon" type="image/png" href="logo.png">
   <script src="perf-debug.js"></script>
   <script src="config.js"></script>
@@ -13,24 +13,24 @@
   <script src="portal-auth.js"></script>
   <style>
     :root {
-      --primary: #1fc1e6;
-      --primary-soft: #55d9f3;
-      --primary-strong: #0ea5c6;
-      --primary-hover: #076b88;
+      --primary: #6c47d9;
+      --primary-soft: #a78bfa;
+      --primary-strong: #4f46e5;
+      --primary-hover: #3730a3;
       --accent: #ffd24d;
-      --accent-light: #fff49a;
+      --accent-light: #efe7ff;
       --accent-strong: #e6a418;
       --accent-deep: #c57a00;
-      --bg-dark: #0b3d59;
+      --bg-dark: #1e1b4b;
       --bg-card: rgba(255, 255, 255, 0.95);
-      --bg-card-soft: #dff6ff;
-      --bg-page: #dff6ff;
+      --bg-card-soft: #ece9f8;
+      --bg-page: #e4e2f0;
       --bg-page-alt: #ffffff;
-      --text: #0b3d59;
-      --text-muted: #076b88;
-      --success: #0ea5c6;
+      --text: #1e1b4b;
+      --text-muted: #3730a3;
+      --success: #4f46e5;
       --danger: #8a5b00;
-      --border: #55d9f3;
+      --border: #a78bfa;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -76,9 +76,9 @@
     .container {
       max-width: 1200px; margin: 0 auto;
       background: var(--bg-card); border-radius: 16px;
-      box-shadow: 0 12px 30px rgba(11,61,89,0.12);
+      box-shadow: 0 12px 30px rgba(30,27,75,0.12);
       padding: 24px 16px;
-      border: 1px solid rgba(85,217,243,0.45);
+      border: 1px solid rgba(167,139,250,0.45);
     }
 
     h1 { color: var(--primary); text-align: center; margin-bottom: 4px; font-size: 1.8em; }
@@ -132,11 +132,11 @@
     .level-header { background: #f8f4ea; display: none; color: var(--primary); }
     .level-header.visible { display: table-cell; }
     .player-row { display: table-row; border-bottom: 1px solid #eee; background: #fff; }
-    .player-row:hover { background: rgba(85,217,243,0.14); }
+    .player-row:hover { background: rgba(167,139,250,0.14); }
     .cell { display: table-cell; padding: 10px 8px; border-right: 1px solid #eee; text-align: center; font-size: 13px; vertical-align: middle; white-space: nowrap; color: var(--text); background: #fff; }
     .cell:first-child { text-align: center; font-weight: 600; color: var(--primary); position: sticky; left: 0; background: #fff; z-index: 1; min-width: 45px; max-width: 50px; width: 50px; }
     .cell:nth-child(2) { text-align: left; font-weight: 500; position: sticky; left: 50px; background: #fff; z-index: 1; min-width: 150px; }
-    .player-row:hover .cell:first-child, .player-row:hover .cell:nth-child(2) { background: rgba(85,217,243,0.14); }
+    .player-row:hover .cell:first-child, .player-row:hover .cell:nth-child(2) { background: rgba(167,139,250,0.14); }
     .level-cell { background: #f8f4ea; display: none; font-size: 12px; color: var(--primary); }
     .level-cell.visible { display: table-cell; }
     .count-zero { color: #ccc; }
@@ -176,7 +176,7 @@
       width: 100%; padding: 10px; background: #fff; border: 1px solid var(--border);
       border-radius: 8px; color: var(--text); font-size: 0.9em; margin-bottom: 12px;
     }
-    .modal input[type="text"]:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(31,193,230,0.18); }
+    .modal input[type="text"]:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(108,71,217,0.18); }
     /* Chest points: one line per chest type, click to show its levels */
     .chest-ref-group { border-bottom: 1px solid var(--border); }
     .chest-ref-type {
@@ -213,7 +213,7 @@
       background: linear-gradient(135deg, #f0ebe0 0%, #f8f4ea 100%);
       border: 2px solid var(--primary); border-radius: 12px;
       padding: 16px; margin-bottom: 16px; text-align: center;
-      box-shadow: 0 0 16px rgba(31,193,230,0.18);
+      box-shadow: 0 0 16px rgba(108,71,217,0.18);
     }
     .countdown-title { font-size: 14px; font-weight: 600; color: var(--primary); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
     .countdown-parts { display: flex; justify-content: center; gap: 20px; margin: 8px 0; }
@@ -289,8 +289,8 @@
 </nav>
 
 <div class="container">
-  <img src="chest.png" alt="cCc Legends" class="site-logo">
-  <h1>cCc Legends</h1>
+  <img src="chest.png" alt="cCc Masters Of Battle" class="site-logo">
+  <h1>cCc Masters Of Battle</h1>
   <p class="subtitle">Clan Dashboard</p>
 
   <!-- Period Selector -->
@@ -379,7 +379,7 @@
   // AUTH
   // ===========================
   function checkLoginState() {
-    const stored = localStorage.getItem('leg_auth');
+    const stored = localStorage.getItem('mob_auth');
     if (stored) {
       try {
         const auth = JSON.parse(stored);
@@ -433,7 +433,7 @@
         if (authResult.success && authResult.allowed) {
           isLoggedIn = true;
           currentUser = { email: data.email, allowed: true };
-          localStorage.setItem('leg_auth', JSON.stringify(currentUser));
+          localStorage.setItem('mob_auth', JSON.stringify(currentUser));
           updateLoginUI();
           showToast('Logged in as ' + data.email, 'success');
         } else {
@@ -450,7 +450,7 @@
   function handleLogout() {
     isLoggedIn = false;
     currentUser = null;
-    localStorage.removeItem('leg_auth');
+    localStorage.removeItem('mob_auth');
     updateLoginUI();
     showToast('Logged out', 'success');
   }

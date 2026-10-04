@@ -1,13 +1,13 @@
 /**
- * Legends portal role gating.
+ * Portal role gating (cCc Masters Of Battle).
  *
  * admin  - e-mail listed in ALLOWED_MANAGEMENT_EMAILS, sees management pages
  * member - e-mail linked to one or more active Members rows, sees public pages and My Profile
  */
 (function () {
-  var AUTH_KEY = 'leg_auth';
-  var ROLE_KEY = 'leg_portal_role';
-  var MEMBER_KEY = 'leg_portal_member';
+  var AUTH_KEY = 'mob_auth';
+  var ROLE_KEY = 'mob_portal_role';
+  var MEMBER_KEY = 'mob_portal_member';
 
   var ADMIN_ONLY_PAGES = [
     'events.html',
@@ -86,11 +86,11 @@
     if (isAdmin || ADMIN_ONLY_PAGES.indexOf(page) === -1) return;
 
     document.body.innerHTML = '<div style="max-width:520px;margin:80px auto;padding:32px;'
-      + 'background:rgba(255,255,255,0.95);border:1px solid #55d9f3;border-radius:16px;text-align:center;'
-      + 'font-family:Segoe UI,Arial,sans-serif;color:#0b3d59;box-shadow:0 12px 30px rgba(11,61,89,0.12);">'
-      + '<h1 style="color:#1fc1e6;font-size:22px;margin-bottom:12px;">Restricted page</h1>'
-      + '<p style="color:#076b88;font-size:14px;margin-bottom:20px;">This page is only available to clan superiors.</p>'
-      + '<a href="dashboard.html" style="display:inline-block;padding:10px 18px;background:#1fc1e6;color:#fff;'
+      + 'background:rgba(255,255,255,0.95);border:1px solid #a78bfa;border-radius:16px;text-align:center;'
+      + 'font-family:Segoe UI,Arial,sans-serif;color:#1e1b4b;box-shadow:0 12px 30px rgba(30,27,75,0.12);">'
+      + '<h1 style="color:#6c47d9;font-size:22px;margin-bottom:12px;">Restricted page</h1>'
+      + '<p style="color:#3730a3;font-size:14px;margin-bottom:20px;">This page is only available to clan superiors.</p>'
+      + '<a href="dashboard.html" style="display:inline-block;padding:10px 18px;background:#6c47d9;color:#fff;'
       + 'border-radius:8px;font-weight:700;text-decoration:none;">Back to dashboard</a> '
       + '<a href="myprofile.html" style="display:inline-block;margin-left:8px;padding:10px 18px;background:#fff49a;'
       + 'color:#c57a00;border-radius:8px;font-weight:700;text-decoration:none;">My Profile</a>'

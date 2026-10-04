@@ -1,11 +1,9 @@
-// cCc Legends — STAGING copy of the site (test copy on the database Worker).
-// The database Worker: https://legends-db.ccc-hq.com
-//   - reads come from the Legends Apps Script (the Google Sheet) until each page
-//     has been moved to the database (D1_ACTIONS in the Worker's wrangler.toml);
-//   - changes are refused here: the Sheet is only changed from the live site.
-// The live site still uses https://ccc-legends.lady-qwickske.workers.dev/
-window.CLOUDFLARE_WORKER_URL = 'https://legends-db.ccc-hq.com/';
-window.IS_STAGING_SITE = true;
+// cCc Masters Of Battle — the live site, on its own database Worker.
+// The database Worker: https://masters-db.ccc-hq.com
+//   - every read and change of the pages is answered by the database
+//     (there is no Google Sheet / Apps Script for this clan).
+window.CLOUDFLARE_WORKER_URL = 'https://masters-db.ccc-hq.com/';
+window.IS_STAGING_SITE = false;
 
 // Frontend should call the worker to avoid GAS CORS restrictions.
 window.GAS_WEB_APP_URL = window.CLOUDFLARE_WORKER_URL;
@@ -16,13 +14,13 @@ window.GAS_WEB_APP_URL = window.CLOUDFLARE_WORKER_URL;
 // request to the Worker, so officers stay signed in between visits; changes and
 // officer-only pages need it. Every page's own login code keeps working as is:
 // this only watches the requests to the Worker.
-// (The Legends pages keep their login in 'leg_auth' as { email, allowed }.)
+// (The pages keep their login in 'mob_auth' as { email, allowed }.)
 (function signInPass() {
-	var SESSION_KEY = 'leg_session';
-	var SESSION_EMAIL_KEY = 'leg_session_email';
-	var SESSION_EXPIRES_KEY = 'leg_session_expires';
-	var PAGE_AUTH_KEY = 'leg_auth';
-	var LOGIN_KEYS = ['leg_auth', 'leg_portal_role', 'leg_portal_member'];
+	var SESSION_KEY = 'mob_session';
+	var SESSION_EMAIL_KEY = 'mob_session_email';
+	var SESSION_EXPIRES_KEY = 'mob_session_expires';
+	var PAGE_AUTH_KEY = 'mob_auth';
+	var LOGIN_KEYS = ['mob_auth', 'mob_portal_role', 'mob_portal_member'];
 	var DAYS_30 = 30 * 24 * 3600 * 1000;
 
 	function get(k) { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } }
@@ -45,9 +43,9 @@ window.GAS_WEB_APP_URL = window.CLOUDFLARE_WORKER_URL;
 		else if (!email && get(SESSION_KEY)) clearPass();
 	})();
 
-	// "Logout" on a page removes 'leg_auth': once it was there during this visit
+	// "Logout" on a page removes 'mob_auth': once it was there during this visit
 	// and is gone, the pass is dropped too. (While signing in the page asks the
-	// Worker first and only then stores 'leg_auth', so a missing key alone must
+	// Worker first and only then stores 'mob_auth', so a missing key alone must
 	// not drop the pass.)
 	var seenPageEmail = !!pageEmail();
 
@@ -62,12 +60,12 @@ window.GAS_WEB_APP_URL = window.CLOUDFLARE_WORKER_URL;
 		var show = function () {
 			var box = document.createElement('div');
 			box.style.cssText = 'position:fixed;left:50%;top:16px;transform:translateX(-50%);z-index:100000;'
-				+ 'background:#232526;color:#f3f3f3;border:1px solid #26c2ba;border-radius:10px;padding:12px 16px;'
+				+ 'background:#1e1b4b;color:#f3f3f3;border:1px solid #6c47d9;border-radius:10px;padding:12px 16px;'
 				+ 'font:14px Roboto,Arial,sans-serif;box-shadow:0 4px 16px rgba(0,0,0,.4);max-width:90vw;text-align:center;';
 			box.textContent = message + ' ';
 			var btn = document.createElement('button');
 			btn.textContent = 'OK';
-			btn.style.cssText = 'margin-left:10px;background:#26c2ba;color:#232526;border:0;border-radius:6px;padding:4px 12px;font-weight:600;cursor:pointer;';
+			btn.style.cssText = 'margin-left:10px;background:#6c47d9;color:#1e1b4b;border:0;border-radius:6px;padding:4px 12px;font-weight:600;cursor:pointer;';
 			btn.onclick = function () { location.reload(); };
 			box.appendChild(btn);
 			document.body.appendChild(box);
@@ -123,8 +121,8 @@ window.GAS_WEB_APP_URL = window.CLOUDFLARE_WORKER_URL;
 		if (document.getElementById('staging-site-badge')) return;
 		var badge = document.createElement('div');
 		badge.id = 'staging-site-badge';
-		badge.textContent = 'LEGENDS STAGING — test copy';
-		badge.title = 'Test copy of the cCc Legends site on the database Worker. Changes are disabled here; use the live site.';
+		badge.textContent = 'MASTERS STAGING — test copy';
+		badge.title = 'Test copy of the cCc Masters Of Battle site on the database Worker. Changes are disabled here; use the live site.';
 		badge.style.cssText = [
 			'position:fixed', 'left:8px', 'bottom:8px', 'z-index:2147483647',
 			'background:#c62828', 'color:#fff', 'font:700 12px/1.2 Arial,sans-serif',

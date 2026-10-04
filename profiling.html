@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>cCc Legends - Profiling</title>
+  <title>cCc Masters Of Battle - Profiling</title>
   <link rel="icon" type="image/png" href="logo.png">
   <script src="perf-debug.js"></script>
   <script src="config.js"></script>
@@ -13,24 +13,24 @@
   <script src="portal-auth.js"></script>
   <style>
     :root {
-      --primary: #1fc1e6;
-      --primary-soft: #55d9f3;
-      --primary-strong: #0ea5c6;
-      --primary-hover: #076b88;
+      --primary: #6c47d9;
+      --primary-soft: #a78bfa;
+      --primary-strong: #4f46e5;
+      --primary-hover: #3730a3;
       --accent: #ffd24d;
-      --accent-light: #fff49a;
+      --accent-light: #efe7ff;
       --accent-strong: #e6a418;
       --accent-deep: #c57a00;
-      --bg-dark: #0b3d59;
+      --bg-dark: #1e1b4b;
       --bg-card: rgba(255, 255, 255, 0.95);
-      --bg-card-soft: #dff6ff;
-      --bg-page: #dff6ff;
+      --bg-card-soft: #ece9f8;
+      --bg-page: #e4e2f0;
       --bg-page-alt: #ffffff;
-      --text: #0b3d59;
-      --text-muted: #076b88;
-      --success: #0ea5c6;
+      --text: #1e1b4b;
+      --text-muted: #3730a3;
+      --success: #4f46e5;
       --danger: #8a5b00;
-      --border: #55d9f3;
+      --border: #a78bfa;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -78,7 +78,7 @@
     .btn:hover { background: var(--primary-hover); }
 
     /* Container */
-    .container { max-width: 1000px; margin: 0 auto; background: var(--bg-card); border-radius: 16px; box-shadow: 0 12px 30px rgba(11,61,89,0.12); padding: 24px 16px; border: 1px solid rgba(85,217,243,0.45); }
+    .container { max-width: 1000px; margin: 0 auto; background: var(--bg-card); border-radius: 16px; box-shadow: 0 12px 30px rgba(30,27,75,0.12); padding: 24px 16px; border: 1px solid rgba(167,139,250,0.45); }
     h1 { color: var(--primary); text-align: center; margin-bottom: 4px; font-size: 1.8em; }
     .site-logo { width: 64px; height: 64px; display: block; margin: 0 auto 8px auto; }
     .subtitle { text-align: center; color: var(--text-muted); margin-bottom: 16px; font-size: 0.9em; }
@@ -87,13 +87,13 @@
     /* Sub-tabs */
     .sub-tabs { display: flex; gap: 4px; margin: 16px 0 8px 0; border-bottom: 2px solid var(--border); }
     .sub-tab { padding: 10px 18px; background: none; border: none; color: var(--text-muted); font-size: 0.9em; font-weight: 600; cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.2s; border-radius: 6px 6px 0 0; }
-    .sub-tab:hover { color: var(--primary); background: rgba(85,217,243,0.14); }
-    .sub-tab.active { color: var(--primary); border-bottom-color: var(--primary); background: rgba(85,217,243,0.18); }
+    .sub-tab:hover { color: var(--primary); background: rgba(167,139,250,0.14); }
+    .sub-tab.active { color: var(--primary); border-bottom-color: var(--primary); background: rgba(167,139,250,0.18); }
 
     /* Member Selector */
     .selector-container { display: flex; gap: 12px; align-items: center; margin: 12px 0; flex-wrap: wrap; }
     .selector-container select { flex: 1; min-width: 220px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.95em; background: #fff; color: var(--text); }
-    .selector-container select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(31,193,230,0.18); }
+    .selector-container select:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(108,71,217,0.18); }
 
     /* Score Ring */
     .score-section { display: flex; align-items: center; gap: 24px; margin: 16px 0; flex-wrap: wrap; }
@@ -120,7 +120,7 @@
 
     /* Rankings */
     .ranking-card { background: linear-gradient(180deg, #ffffff 0%, var(--bg-card-soft) 100%); border-radius: 10px; padding: 12px 16px; border: 1px solid var(--border); display: flex; align-items: center; gap: 14px; margin-bottom: 8px; transition: transform 0.15s, box-shadow 0.15s; }
-    .ranking-card:hover { transform: translateX(4px); box-shadow: 0 8px 18px rgba(31,193,230,0.16); }
+    .ranking-card:hover { transform: translateX(4px); box-shadow: 0 8px 18px rgba(108,71,217,0.16); }
     .ranking-rank { font-size: 1.2em; font-weight: 700; color: var(--primary); width: 36px; text-align: center; flex-shrink: 0; }
     .ranking-rank.top1 { color: #d4a017; }
     .ranking-rank.top2 { color: #8a8a8a; }
@@ -147,7 +147,7 @@
     table { width: 100%; border-collapse: collapse; background: #fff; }
     th { padding: 10px 8px; font-size: 0.7em; color: var(--primary); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--border); text-align: left; background: #f8f4ea; }
     td { padding: 10px 8px; border-bottom: 1px solid #eee; font-size: 0.85em; color: var(--text); }
-    tr:hover { background: rgba(85,217,243,0.12); }
+    tr:hover { background: rgba(167,139,250,0.12); }
 
     /* Loading & Empty */
     .loading { text-align: center; padding: 40px; color: var(--text-muted); }
@@ -197,7 +197,7 @@
 </div>
 
 <div class="container" id="mainContent" style="display:none">
-  <img src="profiling.png" alt="cCc Legends" class="site-logo">
+  <img src="profiling.png" alt="cCc Masters Of Battle" class="site-logo">
   <h1>Member Profiling</h1>
   <p class="subtitle">Performance scoring based on target achievement, event participation, consistency & warnings</p>
 
@@ -276,7 +276,7 @@
 
   // AUTH
   function checkLoginState() {
-    const stored = localStorage.getItem('leg_auth');
+    const stored = localStorage.getItem('mob_auth');
     if (stored) {
       try {
         const auth = JSON.parse(stored);
@@ -302,13 +302,13 @@
         const auth = vData.data || vData;
         if (auth.success && auth.allowed) {
           isLoggedIn = true; currentUser = { email: data.email, allowed: true };
-          localStorage.setItem('leg_auth', JSON.stringify(currentUser));
+          localStorage.setItem('mob_auth', JSON.stringify(currentUser));
           updateLoginUI(); showToast('Logged in', 'success');
         } else { showToast('Access denied', 'error'); }
       }
     } catch (err) { showToast('Login error', 'error'); }
   }
-  function handleLogout() { isLoggedIn = false; currentUser = null; localStorage.removeItem('leg_auth'); window.location.href = 'dashboard.html'; }
+  function handleLogout() { isLoggedIn = false; currentUser = null; localStorage.removeItem('mob_auth'); window.location.href = 'dashboard.html'; }
   function updateLoginUI() {
     document.getElementById('userEmail').textContent = isLoggedIn ? currentUser.email : '';
     document.getElementById('userEmail').style.display = isLoggedIn ? 'inline' : 'none';

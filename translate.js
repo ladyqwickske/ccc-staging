@@ -15,7 +15,7 @@
     '#google_translate_element { position: fixed; bottom: 8px; right: 8px; z-index: 7000; }',
     '#translateToggleBtn { position: fixed; bottom: 8px; right: 8px; z-index: 7001; display: none; align-items: center; justify-content: center;'
       + ' width: 38px; height: 38px; border: 1px solid var(--border, #9fdcf0); border-radius: 8px; background: var(--bg-card, #fff);'
-      + ' color: var(--primary, #1fc1e6); font-size: 18px; cursor: pointer; box-shadow: 0 1px 4px rgba(0,0,0,0.15); }',
+      + ' color: var(--primary, #6c47d9); font-size: 18px; cursor: pointer; box-shadow: 0 1px 4px rgba(0,0,0,0.15); }',
     '@media (max-width: 800px) {',
     '  #google_translate_element { max-width: 0; overflow: hidden; opacity: 0; pointer-events: none; transition: max-width 0.2s ease, opacity 0.2s ease; }',
     '  body.translate-open #google_translate_element { max-width: 260px; opacity: 1; pointer-events: auto; }',
