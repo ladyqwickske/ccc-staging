@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cCc Masters Of Battle - Superior Guide</title>
+  <link rel="icon" type="image/png" href="logo.png">
+  <script src="perf-debug.js"></script>
+  <script src="config.js"></script>
+  <script src="translate.js"></script>
+  <script src="site-config.js"></script>
+  <script src="portal-shim.js"></script>
+  <script src="portal-auth.js"></script>
+  <script src="help-content.js"></script>
+  <script src="help.js"></script>
+  <style>
+    :root {
+      --primary: #6c47d9;
+      --primary-soft: #a78bfa;
+      --primary-hover: #3730a3;
+      --accent-light: #efe7ff;
+      --accent-deep: #c57a00;
+      --bg-card: rgba(255, 255, 255, 0.94);
+      --bg-card-soft: #ece9f8;
+      --bg-page: #e4e2f0;
+      --bg-page-alt: #ffffff;
+      --text: #1e1b4b;
+      --text-muted: #3730a3;
+      --border: #a78bfa;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 64px; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, var(--bg-page-alt) 0%, var(--bg-page) 55%, var(--accent-light) 100%);
+      color: var(--text); min-height: 100vh; background-attachment: fixed;
+      padding: 60px 8px 80px 8px; line-height: 1.6;
+    }
+    .tab-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; justify-content: center; background: rgba(255, 255, 255, 0.96);
+      border-bottom: 2px solid var(--primary-soft);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .tab-nav a {
+      color: var(--text-muted); text-decoration: none; padding: 12px 18px;
+      font-size: 0.95em; font-weight: 500; border-bottom: 3px solid transparent;
+    }
+    .tab-nav a:hover { color: var(--primary); }
+    .tab-nav a.active { color: var(--primary); border-bottom-color: var(--primary); }
+    .nav-icon { width: 18px; height: 18px; vertical-align: middle; margin-right: 4px; }
+    .nav-links { display: flex; }
+    .hamburger {
+      display: none; background: none; border: none; cursor: pointer; padding: 8px;
+      flex-direction: column; gap: 4px;
+    }
+    .hamburger span { display: block; width: 22px; height: 2px; background: var(--primary); border-radius: 2px; }
+
+    .container {
+      max-width: 860px; margin: 0 auto; background: var(--bg-card);
+      border-radius: 16px; box-shadow: 0 12px 30px rgba(30,27,75,0.12); padding: 24px 28px;
+      border: 1px solid rgba(167,139,250,0.45);
+    }
+    h1 { color: var(--primary); text-align: center; margin-bottom: 4px; font-size: 1.8em; }
+    .site-logo { width: 64px; height: 64px; display: block; margin: 0 auto 8px auto; }
+    .subtitle { text-align: center; color: var(--text-muted); margin-bottom: 16px; font-size: 0.95em; }
+    .guide-tools { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+    .guide-tools .help-action { margin: 0; }
+
+    .guide-toc { background: var(--bg-card-soft); border-radius: 12px; padding: 14px 20px; margin-bottom: 24px; }
+    .guide-toc h2 { font-size: 1.05em; color: var(--primary); margin-bottom: 6px; }
+    .guide-toc ol { margin-left: 22px; columns: 2; column-gap: 28px; }
+    .guide-toc li { break-inside: avoid; }
+    .guide-toc a { color: var(--text); text-decoration: none; }
+    .guide-toc a:hover { color: var(--primary); text-decoration: underline; }
+
+    .guide-section { padding: 18px 0; border-top: 1px solid rgba(167,139,250,0.45); }
+    .guide-section h2 { color: var(--primary); font-size: 1.35em; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+    .guide-section > p { margin-bottom: 8px; }
+    .guide-section > ul { margin: 4px 0 8px 22px; }
+    .guide-section > ul li { margin-bottom: 4px; }
+    .guide-icon { width: 30px; height: 30px; }
+    .guide-sub { font-size: 1.05em; color: var(--text); margin: 16px 0 8px; padding-bottom: 2px; border-bottom: 2px solid var(--accent-light); }
+    .guide-top { font-size: 0.85em; margin-top: 8px; }
+    .guide-section a { color: var(--primary); }
+    .help-who a { color: var(--primary); }
+
+    @media (max-width: 600px) {
+      body { padding: 50px 4px 70px 4px; }
+      .tab-nav { flex-wrap: wrap; padding: 0 8px; align-items: center; justify-content: flex-start; }
+      .hamburger { display: flex; }
+      .nav-links { display: none; width: 100%; flex-direction: column; order: 10; }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 10px 12px; font-size: 0.9em; border-bottom: 1px solid var(--border); }
+      .container { padding: 16px 12px; }
+      .guide-toc ol { columns: 1; }
+    }
+    @media print {
+      body { background: #fff; padding: 0; }
+      .tab-nav, .guide-tools, .guide-top, #google_translate_element, #translateToggleBtn { display: none !important; }
+      .container { box-shadow: none; border: 0; max-width: none; }
+      .guide-section { break-inside: avoid-page; }
+    }
+  </style>
+</head>
+<body id="top">
+
+<!-- Tab Navigation (help.js adds the 📖 Guide link) -->
+<nav class="tab-nav">
+  <button class="hamburger" id="hamburgerBtn" onclick="document.getElementById('navLinks').classList.toggle('open')"><span></span><span></span><span></span></button>
+  <div class="nav-links" id="navLinks">
+    <a href="dashboard.html"><img src="chest.png" class="nav-icon" alt=""> Dashboard</a>
+    <a href="events.html" id="navEvents" style="display:none"><img src="events.png" class="nav-icon" alt=""> Events</a>
+    <a href="members.html" id="navMembers" style="display:none"><img src="members.png" class="nav-icon" alt=""> Members</a>
+    <a href="profiling.html" id="navProfiling" style="display:none"><img src="profiling.png" class="nav-icon" alt=""> Profiling</a>
+    <a href="warnings.html" id="navWarnings" style="display:none"><img src="warning.png" class="nav-icon" alt=""> Warnings</a>
+    <a href="calendar.html"><img src="calendar.png" class="nav-icon" alt=""> Calendar</a>
+    <a href="bank.html" id="navBank" style="display:none"><img src="bank.png" class="nav-icon" alt=""> Bank</a>
+  </div>
+</nav>
+
+<div class="container">
+  <img src="logo.png" alt="cCc Masters Of Battle" class="site-logo">
+  <h1>Superior Guide</h1>
+  <p class="subtitle">How the clan website works, page by page</p>
+  <div class="guide-tools" id="guideTools">
+    <button type="button" class="help-action secondary" onclick="window.print()">🖨️ Print or save as PDF</button>
+  </div>
+  <div id="guideBody"></div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Not a superior: portal-auth.js has replaced the page with "Restricted page".
+    if (!document.getElementById('guideBody')) return;
+    document.getElementById('guideTools').prepend(HelpGuide.languageButton());
+    HelpGuide.renderGuide(document.getElementById('guideBody'));
+    // The sections are drawn after the page loads: jump to the #page asked for in the link.
+    if (location.hash) {
+      var target = document.getElementById(location.hash.slice(1));
+      if (target) target.scrollIntoView();
+    }
+  });
+</script>
+</body>
+</html>
